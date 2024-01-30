@@ -9,12 +9,20 @@
         * {
             margin: 0;
             padding: 0;
-            
+            font-family: 'mango35_light', sans-serif;
             background-color: #1a1a1a;
-            color: #f4f4df;
+            color: var(--white);
             box-sizing: border-box;
         }
 
+        :root {
+            --screen-size: 1900px;
+            --cta: #FFBE0B;
+            --red: #ff4500;
+            --white: #f4f4df;
+
+        }
+        
         @font-face {
             font-family: 'mango35_light';
             src: url('fonts/Kanit-Light.ttf') format('truetype');
@@ -22,17 +30,186 @@
             font-style: normal;
         }
 
+        .cta {
+            margin-left: 100%;
+            cursor: pointer;
+            border: 1px solid var(--red);
+            padding: 0px 5px 2px 5px;
+            margin-top: 5px;
+            border-radius: 3px;
+        }
+
+        .cta:hover {
+            background-color: var(--red);
+        }
+
+        .container_en {
+            width: 100%;
+            max-width: var(--screen-size);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            
+            padding: 0 20px;
+
+        }
+
+        .container_fr {
+            width: 100%;
+            max-width: var(--screen-size);
+            margin: 0 auto;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            
+            padding: 0 20px;
+
+        }
+
 
         .title {
-            font-family: 'mango35_light', sans-serif;
-            font-size: 2rem;
+            
+            font-size: 48px;
             font-weight: 700;
             text-align: center;
             margin: 1rem 0;
         }
+
+        .banner {
+            max-width: 900px;
+            font-size: 42px;
+            margin: 0 auto;
+            color: var(--red);
+            text-align: center;
+        }
+        
+
+        .paragraph {
+            max-width: 900px;
+            margin: 20px auto;
+            font-size: 20px;
+        }
+        .info {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 20px;
+            text-align: center;
+            padding: 20px 0px 40px 0px;
+        }
+
+        .footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--cta);
+            cursor: pointer;
+            margin: 0 auto;
+            padding: 5px 10px;
+        }
+
+        a:hover {
+            border: 1px solid var(--red);
+            
+        }
+
+        @media screen and (max-width: 400px) { 
+            .banner {
+                padding: 0;
+                order: -1;
+                font-size: 24px;
+                margin-top: 20px;
+            }
+
+            .cta {
+                order: -2;
+            }
+
+            .paragraph {
+                text-align: justify;
+            }
+            
+        }
     </style>
 </head>
 <body>
-    <div class="title" >mango35 Web Creations – Crafting Digital Frontiers</div>
+    <div class="container_en">
+        <div class="cta">FR</div>
+        <div class="title">mango35 Web Creations – Crafting Digital Frontiers</div>
+        
+        <div class="banner">--&nbsp;under contruction&nbsp;--</div>
+        <div class="paragraph">Welcome to mango35, where my journey as a junior web developer unfolds. Here, I share my explorations in web technology, focusing on creating user-friendly and efficient websites.</div>
+        <div class="paragraph">With a keen interest in modern web practices, I'm dedicated to learning and applying new skills to build websites that are both visually appealing and functionally sound.</div>
+        <div class="paragraph"> Join me as I navigate the exciting world of web development, transforming ideas into practical digital solutions.</div>
+        <div class="info">
+
+            <a href="mailto:info@mango35.com">Send Email to info@mango35.com</a>
+            
+            <div class="footer">&copy;<script>document.write(new Date().getFullYear());</script> mango35. All rights reserved.</div>
+        </div>
+                
+           
+       
+    </div>
+    <div class="container_fr">
+        <div class="cta">EN</div>
+        <div class="title"> Creations Web mango35 – Crafting Digital Frontiers</div>
+        
+        <div class="banner">--&nbsp;sous contruction&nbsp;--</div>
+        <div class="paragraph">Welcome to mango35, where my journey as a junior web developer unfolds. Here, I share my explorations in web technology, focusing on creating user-friendly and efficient websites.</div>
+        <div class="paragraph">With a keen interest in modern web practices, I'm dedicated to learning and applying new skills to build websites that are both visually appealing and functionally sound.</div>
+        <div class="paragraph"> Join me as I navigate the exciting world of web development, transforming ideas into practical digital solutions.</div>
+        <div class="info">
+
+            <a href="mailto:info@mango35.com">Envoyez courriel a info@mango35.com</a>
+        </div>
+        <div class="footer">&copy;<script>document.write(new Date().getFullYear());</script> mango35. All rights reserved.</div>
+    </div>
+    
+    <script>
+        let userLang = navigator.language || navigator.userLanguage; 
+        let button = document.querySelector('.cta');
+        let container_en = document.getElementsByClassName('container_en');
+        let container_fr = document.getElementsByClassName('container_fr');
+    
+        function toggleLanguage() {
+            if (userLang.toLowerCase() === 'en-ca') {
+                userLang = 'fr-ca';
+                button.textContent = 'EN'
+                Array.from(container_en).forEach(el => el.style.display = 'none');
+                Array.from(container_fr).forEach(el => el.style.display = 'flex');
+                console.log('french text'); 
+                
+            } else if (userLang.toLowerCase() === 'fr-ca') {
+                userLang = 'en-ca';
+                button.textContent = 'FR'
+                Array.from(container_fr).forEach(el => el.style.display = 'none');
+                Array.from(container_en).forEach(el => el.style.display = 'flex');
+                console.log('english text');
+            }
+        }
+    
+        button.addEventListener('click', function() {
+            toggleLanguage();
+            console.log('Button clicked! Current language: ' + userLang);
+        });
+    
+     
+    </script>
+    
+    
+
 </body>
 </html>
